@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.S3" Version="4.0.103.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(ArchonProjectsPath)/Archon.Infrastructure/Archon.Infrastructure.csproj" />
+    <ProjectReference Include="../../Intake.Messaging/Intake.Messaging.csproj" />
+    <ProjectReference Include="../Intake.Compliance.Domain/Intake.Compliance.Domain.csproj" />
+    <ProjectReference Include="../Intake.Compliance.Application/Intake.Compliance.Application.csproj" />
+  </ItemGroup>
+
+</Project>

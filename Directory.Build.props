@@ -1,0 +1,36 @@
+<Project>
+
+  <!--
+    Localiza o archon-framework sem depender da posicao exata do repositorio no monorepo.
+
+    Ordem de resolucao:
+      1. propriedade ArchonFrameworkPath (ex.: dotnet build -p:ArchonFrameworkPath=/caminho)
+      2. variavel de ambiente ARCHON_FRAMEWORK_PATH (worktrees fora do monorepo, build em container)
+      3. busca subindo as pastas ate achar frameworks/archon-framework, o que cobre o checkout
+         principal e os worktrees em .claude/worktrees/
+
+    O caminho final passa por GetFullPath: um caminho nao canonico faz o MSBuild construir o
+    framework duas vezes, com as duas copias disputando o mesmo obj/.
+  -->
+
+  <PropertyGroup Condition="'$(ArchonFrameworkPath)' == '' AND '$(ARCHON_FRAMEWORK_PATH)' != ''">
+    <ArchonFrameworkPath>$(ARCHON_FRAMEWORK_PATH)</ArchonFrameworkPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ArchonFrameworkPath)' == ''">
+    <ArchonMonorepoRoot>$([MSBuild]::GetDirectoryNameOfFileAbove('$(MSBuildThisFileDirectory)', 'frameworks/archon-framework/Archon/Archon.Core/Archon.Core.csproj'))</ArchonMonorepoRoot>
+    <ArchonFrameworkPath Condition="'$(ArchonMonorepoRoot)' != ''">$(ArchonMonorepoRoot)/frameworks/archon-framework</ArchonFrameworkPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ArchonFrameworkPath)' != ''">
+    <ArchonFrameworkPath>$([System.IO.Path]::GetFullPath('$(ArchonFrameworkPath)'))</ArchonFrameworkPath>
+    <ArchonProjectsPath>$(ArchonFrameworkPath)/Archon</ArchonProjectsPath>
+  </PropertyGroup>
+
+  <Target Name="ValidateArchonFrameworkPath" BeforeTargets="PrepareForBuild">
+    <Error
+      Condition="!Exists('$(ArchonProjectsPath)/Archon.Core/Archon.Core.csproj')"
+      Text="archon-framework nao encontrado. Informe o caminho com -p:ArchonFrameworkPath=... ou pela variavel de ambiente ARCHON_FRAMEWORK_PATH." />
+  </Target>
+
+</Project>

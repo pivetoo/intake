@@ -1,0 +1,30 @@
+<Solution>
+  <Folder Name="/Shared/">
+    <Project Path="Intake.Contracts/Intake.Contracts.csproj" />
+    <Project Path="Intake.Messaging/Intake.Messaging.csproj" />
+  </Folder>
+  <Folder Name="/Workflow/">
+    <Project Path="Intake.Workflow/Intake.Workflow.Api/Intake.Workflow.Api.csproj" />
+    <Project Path="Intake.Workflow/Intake.Workflow.Application/Intake.Workflow.Application.csproj" />
+    <Project Path="Intake.Workflow/Intake.Workflow.Domain/Intake.Workflow.Domain.csproj" />
+    <Project Path="Intake.Workflow/Intake.Workflow.Infrastructure/Intake.Workflow.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Media/">
+    <Project Path="Intake.Media/Intake.Media.Api/Intake.Media.Api.csproj" />
+    <Project Path="Intake.Media/Intake.Media.Application/Intake.Media.Application.csproj" />
+    <Project Path="Intake.Media/Intake.Media.Domain/Intake.Media.Domain.csproj" />
+    <Project Path="Intake.Media/Intake.Media.Infrastructure/Intake.Media.Infrastructure.csproj" />
+    <Project Path="Intake.Media/Intake.Media.Worker/Intake.Media.Worker.csproj" />
+  </Folder>
+  <Folder Name="/Compliance/">
+    <Project Path="Intake.Compliance/Intake.Compliance.Api/Intake.Compliance.Api.csproj" />
+    <Project Path="Intake.Compliance/Intake.Compliance.Application/Intake.Compliance.Application.csproj" />
+    <Project Path="Intake.Compliance/Intake.Compliance.Domain/Intake.Compliance.Domain.csproj" />
+    <Project Path="Intake.Compliance/Intake.Compliance.Infrastructure/Intake.Compliance.Infrastructure.csproj" />
+    <Project Path="Intake.Compliance/Intake.Compliance.Worker/Intake.Compliance.Worker.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="Intake.IntegrationTests/Intake.IntegrationTests.csproj" />
+    <Project Path="Intake.Testing/Intake.Testing.csproj" />
+  </Folder>
+</Solution>
